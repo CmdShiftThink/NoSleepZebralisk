@@ -1,0 +1,10 @@
+#!/bin/bash
+echo "🧹 Uninstalling ZEB-JUKE BAR 1000 keep-alive service..."
+launchctl unload "$HOME/Library/LaunchAgents/com.user.keepzebawake.plist" 2>/dev/null
+rm -f "$HOME/Library/LaunchAgents/com.user.keepzebawake.plist"
+rm -f "$HOME/keep_zeb_awake.sh" "$HOME/silent_ping.wav"
+rm -rf "/Users/Shared/zeb_keepalive"
+rm -rf "$HOME/.zeb_keepalive_env"
+echo "✅ Uninstall complete."
+exit 0
+

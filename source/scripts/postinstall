@@ -1,0 +1,17 @@
+#!/bin/bash
+mkdir -p "$HOME/Library/LaunchAgents"
+cp "/Users/Shared/zeb_keepalive/com.user.keepzebawake.plist" "$HOME/Library/LaunchAgents/"
+chmod +x "/Users/Shared/zeb_keepalive/keep_zeb_awake.sh"
+
+launchctl unload "$HOME/Library/LaunchAgents/com.user.keepzebawake.plist" 2>/dev/null
+launchctl load "$HOME/Library/LaunchAgents/com.user.keepzebawake.plist"
+
+sleep 2
+launchctl list | grep com.user.keepzebawake >/dev/null
+if [ $? -eq 0 ]; then
+    echo "✅ ZEB-JUKE BAR 1000 keep-alive service is running."
+else
+    echo "❌ Failed to launch service."
+    exit 1
+fi
+
